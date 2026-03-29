@@ -1,0 +1,45 @@
+TASK 1: USER DIRECTORY
+
+GOAL:
+Display a list of users with their profile information.
+
+DATA SOURCE:
+https://jsonplaceholder.typicode.com/users
+
+REQUIREMENTS:
+
+1. UserCard Component:
+
+* Create a reusable component
+* Show the following fields:
+  • Name
+  • Email
+  • Phone
+  • Company Name
+
+2. Data Fetching:
+
+* Fetch user data from the API
+* Manage states properly:
+  • Loading
+  • Success
+  • Error
+
+3. Loading State:
+
+* Show a loading spinner while fetching data
+
+4. Error Handling:
+
+* Show a friendly error message if the API fails
+
+5. Layout & Styling:
+
+* Use a responsive grid layout:
+  • Mobile: 1 column
+  • Desktop: 3 columns
+
+BONUS (OPTIONAL):
+
+* Add hover effect on cards
+* Add search or filter functionality
