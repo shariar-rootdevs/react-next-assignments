@@ -1,31 +1,55 @@
-import { User } from "../types/user.types";
+import { Joke } from "../types/user.types";
 
-type UserCardProps = {
-  data: User;
+const cardColors = [
+  "from-purple-500 to-indigo-600",
+  "from-pink-500 to-rose-600",
+  "from-orange-400 to-red-500",
+  "from-teal-400 to-cyan-600",
+  "from-green-400 to-emerald-600",
+  "from-yellow-400 to-orange-500",
+  "from-blue-500 to-violet-600",
+  "from-fuchsia-500 to-pink-600",
+  "from-amber-400 to-yellow-600",
+  "from-sky-400 to-blue-600",
+];
+
+const emojis = ["😂", "🤣", "😆", "😹", "🤡", "🎉", "💀", "😜", "🤪", "🙃"];
+
+type JokeCardProps = {
+  data: Joke;
+  index: number;
 };
 
-export default function UserCard({ data }: UserCardProps) {
+export default function UserCard({ data, index }: JokeCardProps) {
+  const colorClass = cardColors[index % cardColors.length];
+  const emoji = emojis[index % emojis.length];
+
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-lg">
-          {data.name.charAt(0)}
+    <div className="flip-card h-64">
+      <div className="flip-card-inner">
+        {/* Front */}
+        <div
+          className={`flip-card-front bg-linear-to-br ${colorClass} rounded-2xl p-6 flex flex-col justify-center items-center text-white shadow-lg`}
+        >
+          <span className="text-4xl mb-4">{emoji}</span>
+          <p className="text-center text-lg font-semibold leading-relaxed">
+            {data.setup}
+          </p>
+          <span className="mt-4 text-xs uppercase tracking-widest opacity-70 bg-white/20 px-3 py-1 rounded-full">
+            {data.type}
+          </span>
         </div>
-        <h2 className="text-xl font-semibold text-gray-800">{data.name}</h2>
-      </div>
-      <div className="space-y-2 text-gray-600">
-        <p className="flex items-center gap-2">
-          <span className="font-medium text-gray-700">📧 Email:</span>
-          <span>{data.email}</span>
-        </p>
-        <p className="flex items-center gap-2">
-          <span className="font-medium text-gray-700">📞 Phone:</span>
-          <span>{data.phone}</span>
-        </p>
-        <p className="flex items-center gap-2">
-          <span className="font-medium text-gray-700">🏢 Company:</span>
-          <span>{data.company.name}</span>
-        </p>
+
+        {/* Back */}
+        <div className="flip-card-back bg-white rounded-2xl p-6 flex flex-col justify-center items-center shadow-lg border-2 border-dashed border-purple-300">
+          <span className="text-4xl mb-4">🥁</span>
+          <p className="text-center text-xl font-bold text-gray-800 leading-relaxed">
+            {data.punchline}
+          </p>
+          <span className="mt-4 text-sm text-purple-500 font-medium">
+            😆 Got it?
+          </span>
+        </div>
       </div>
     </div>
   );
